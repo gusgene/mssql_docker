@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  db:
+    build: .
+    image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: SuperSecret(!)Password
+      MSSQL_DB: dev
+      MSSQL_USER: Gusgene
+      MSSQL_PASSWORD: Secret(!)Password
+    volumes:
+      - devdata:/var/lib/mssql/data
+    ports:
+      - "1455:1433"
+    container_name: mssqldev
+
+volumes:
+  devdata:
